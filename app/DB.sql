@@ -20,3 +20,26 @@ CREATE TABLE LigneBonLivraison (
   quantite INT NOT NULL,
   FOREIGN KEY (idBonLivraison) REFERENCES Bonlivraison(idBonlivraison) ON DELETE CASCADE
 );
+
+CREATE TABLE Article (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ref VARCHAR(50) NOT NULL,
+    libelle VARCHAR(255) NOT NULL,
+    qteStock INT NOT NULL,
+    prixUnitaire DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE Facture (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    datefact DATE NOT NULL,
+    client VARCHAR(255) NOT NULL,
+    total DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE LigneFacture (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    article_id INT NOT NULL,
+    Qte INT NOT NULL,
+    PRIXUnitaire DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (article_id) REFERENCES Article(id) ON DELETE CASCADE
+);
